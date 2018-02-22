@@ -2,7 +2,7 @@
 $aMenuLinks = Array(
 	Array(
 		"Условия сотрудничества", 
-		"/partneram/", 
+		"/partneram/index.php", 
 		Array(), 
 		Array(), 
 		"" 

@@ -2,3 +2,4 @@ bitrix/
 upload/
 .htaccess
 *test.php
+*.komodoproject

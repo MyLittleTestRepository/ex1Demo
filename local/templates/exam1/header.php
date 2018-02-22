@@ -67,69 +67,23 @@ IncludeTemplateLangFile(__FILE__);
         </header>
         <!-- /header -->
         <!-- nav -->
-        <nav class="nav">
-            <div class="inner-wrap">
-                <div class="menu-block popup-wrap">
-                    <a href="" class="btn-menu btn-toggle"></a>
-                    <div class="menu popup-block">
-                        <ul class="">
-                            <li class="main-page"><a href="">Главная</a>
-                            </li>
-                            <li>
-                                <a href="">Компания</a>
-                                <ul>
-                                    <li>
-                                        <a href="">Пункт 1</a>
-                                        <ul>
-                                            <li><a href="">Пункт 1</a>
-                                            </li>
-                                            <li><a href="">Пункт 2</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="">Пункт 2</a>
-                                    </li>
-                                    <li><a href="">Пункт 3</a>
-                                    </li>
-                                    <li><a href="">Пункт 4</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="">Новости</a>
-                            </li>
-                            <li>
-                                <a href="">Каталог</a>
-                                <ul>
-                                    <li>
-                                        <a href="">Пункт 1</a>
-                                        <ul>
-                                            <li><a href="">Пункт 1</a>
-                                            </li>
-                                            <li><a href="">Пункт 2</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="">Пункт 2</a>
-                                    </li>
-                                    <li><a href="">Пункт 3</a>
-                                    </li>
-                                    <li><a href="">Пункт 4</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="">Фотогалерея</a>
-                            </li>
-                            <li><a href="">Партнерам</a>
-                            </li>
-                            <li><a href="">Контакты</a>
-                            </li>
-                        </ul>
-                        <a href="" class="btn-close"></a>
-                    </div>
-                    <div class="menu-overlay"></div>
-                </div>
-            </div>
-        </nav>
+                <?$APPLICATION->IncludeComponent("bitrix:menu", "top_horizontal_multilevel", Array(
+	"COMPONENT_TEMPLATE" => "horizontal_multilevel",
+		"ROOT_MENU_TYPE" => "top",	// Тип меню для первого уровня
+		"MENU_CACHE_TYPE" => "A",	// Тип кеширования
+		"MENU_CACHE_TIME" => "3600000",	// Время кеширования (сек.)
+		"MENU_CACHE_USE_GROUPS" => "Y",	// Учитывать права доступа
+		"MENU_CACHE_GET_VARS" => array(	// Значимые переменные запроса
+			0 => "",
+		),
+		"MAX_LEVEL" => "3",	// Уровень вложенности меню
+		"CHILD_MENU_TYPE" => "left",	// Тип меню для остальных уровней
+		"USE_EXT" => "Y",	// Подключать файлы с именами вида .тип_меню.menu_ext.php
+		"DELAY" => "N",	// Откладывать выполнение шаблона меню
+		"ALLOW_MULTI_SELECT" => "N",	// Разрешить несколько активных пунктов одновременно
+	),
+	false
+);?>
         <!-- /nav -->
         <?if($APPLICATION->GetCurDir()!='/'):?>
         <!-- breadcrumbs -->
@@ -311,6 +265,29 @@ IncludeTemplateLangFile(__FILE__);
                 <!-- /content -->
                 <!-- side -->
                 <div class="side">
+                    <?if($APPLICATION->GetCurDir()!='/'):?>
+                    <!-- side menu -->
+                    <?$APPLICATION->IncludeComponent(
+	"bitrix:menu", 
+	"left", 
+	array(
+		"COMPONENT_TEMPLATE" => "left",
+		"ROOT_MENU_TYPE" => "left",
+		"MENU_CACHE_TYPE" => "A",
+		"MENU_CACHE_TIME" => "3600000",
+		"MENU_CACHE_USE_GROUPS" => "Y",
+		"MENU_CACHE_GET_VARS" => array(
+		),
+		"MAX_LEVEL" => "1",
+		"CHILD_MENU_TYPE" => "left",
+		"USE_EXT" => "Y",
+		"DELAY" => "N",
+		"ALLOW_MULTI_SELECT" => "N"
+	),
+	false
+);?>
+                    <!-- /side menu -->
+                    <?endif?>
                     <!-- side anonse -->
                     <div class="side-block side-anonse">
                         <div class="title-block"><span class="i i-title01"></span>Полезная информация!</div>
